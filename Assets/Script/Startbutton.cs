@@ -5,15 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
-    public void Game()
+    [SerializeField]　private SceneObject scene ;
+    public void ChengScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(scene);
     }
-    public void Ranking()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
-    public void Exit()
+    public void QuitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
