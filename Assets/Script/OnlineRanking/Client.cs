@@ -135,6 +135,8 @@ public class Client : MonoBehaviour
 
     void OnDestroy()
     {
+        if (tcpClient == null) return;
+
         tcpClient.Dispose();
         networkStream.Dispose();
 
