@@ -20,9 +20,6 @@ public class RankingObjectManager : MonoBehaviour
     [SerializeField]
     private float TopLimitPos = 2.5f;
 
-    [SerializeField]
-    private int CreateCount = 6;
-
     [Serializable]
     struct RankingIconImages
     {
@@ -51,16 +48,16 @@ public class RankingObjectManager : MonoBehaviour
         };
 
 
-    public void CreateRankingObject()
+    public void CreateRankingObject(int CreateCount)
     {
-        for (int cnt = 0; cnt < CreateCount; cnt++)
+        for (int cnt = CreateCount - 1; cnt >= 0; cnt--)
         {
             int score = (int)((CreateCount - cnt) * 123.45f) * 80;
             RankObjInitData initData;
 
             initData.Ranking = cnt + 1;
             initData.SpriteData = GetRankIconSprite(cnt);
-            initData.PositionY = TopLimitPos - (cnt * 1.25f);
+            initData.PositionY = TopLimitPos;
             initData.Name = user_name[cnt];
             initData.Score = score;
 
