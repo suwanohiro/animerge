@@ -47,12 +47,18 @@ public class Client : MonoBehaviour
         }
     }
 
+    public bool SendServer(string order, string message, string value, string valueType)
+    {
+        SignalDataElem request = new SignalDataElem(order, message, value, valueType);
+        return SendServer(request);
+    }
+
     /// <summary>
     /// サーバーへメッセージを送信する処理
     /// </summary>
-    /// <param name="message">送信するメッセージ</param>
+    /// <param name="requestData">送信するメッセージ</param>
     /// <returns>送信に成功したかどうか</returns>
-    public bool SendServer(string message)
+    public bool SendServer(SignalDataElem requestData)
     {
         if (!isConnected)
         {
@@ -63,15 +69,15 @@ public class Client : MonoBehaviour
         // サーバーへの送信処理
         try
         {
-            var writeBuffer = Encoding.UTF8.GetBytes(message);
+            var writeBuffer = Encoding.UTF8.GetBytes(requestData.ToJSON());
             networkStream.Write(writeBuffer, 0, writeBuffer.Length);
 
-            Debug.Log($"サーバーへ[{message}]の送信に成功しました。");
+            Debug.Log($"サーバーへ[{requestData.ToJSON()}]の送信に成功しました。");
             return true;
         }
         catch
         {
-            Debug.LogError($"サーバーへ[{message}]の送信に失敗しました。");
+            Debug.LogError($"サーバーへ[{requestData.ToJSON()}]の送信に失敗しました。");
             return false;
         }
     }
@@ -129,6 +135,8 @@ public class Client : MonoBehaviour
 
     void OnDestroy()
     {
+        if (tcpClient == null) return;
+
         tcpClient.Dispose();
         networkStream.Dispose();
 
