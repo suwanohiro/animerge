@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RankObjInitData = RankingObject.RankObjInitData;
 
 public class RankingObjectManager : MonoBehaviour
 {
-    enum Rank : int {
+    enum Rank : int
+    {
         No1,
         No2,
         No3,
@@ -14,6 +16,12 @@ public class RankingObjectManager : MonoBehaviour
 
     [SerializeField]
     private GameObject RankingObj;
+
+    [SerializeField]
+    private float TopLimitPos = 2.5f;
+
+    [SerializeField]
+    private int CreateCount = 6;
 
     [Serializable]
     struct RankingIconImages
@@ -25,57 +33,53 @@ public class RankingObjectManager : MonoBehaviour
         [SerializeField]
         public Sprite No3;
         [SerializeField]
-        public Sprite[] Other;
+        public Sprite Other;
     }
 
     [SerializeField]
     private RankingIconImages RankingIcons;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        List<GameObject> array = new List<GameObject>();
-        string[] name =
+
+    private string[] user_name =
         {
             "mario",
             "toad",
             "bowser",
             "link",
             "donkey",
-            "kirby"
+            "AAAAAAAAAA"
         };
 
-        for (int cnt = 0; cnt < 6; cnt++)
-        {
-            array.Add(Instantiate(RankingObj));
-        }
 
-        const float posY = 1 * 1.25f;
-        float totalSize = posY * array.Count;
-        float topPos = 2.5f;
-        for (int cnt = 0; cnt < array.Count; cnt++)
+    public void CreateRankingObject()
+    {
+        for (int cnt = 0; cnt < CreateCount; cnt++)
         {
-            float pos = cnt * 1.25f;
-            pos = topPos - pos;
-            GameObject obj = array[cnt];
-            Sprite sprite = GetRankIconSprite(cnt);
-            Debug.Log(sprite != null);
-            int score = (int)((float)(array.Count - cnt) * 123.45f);
-            obj.GetComponent<RankingObject>().Initialize(sprite, pos, name[cnt], score.ToString());
+            int score = (int)((CreateCount - cnt) * 123.45f) * 80;
+            RankObjInitData initData;
+
+            initData.Ranking = cnt + 1;
+            initData.SpriteData = GetRankIconSprite(cnt);
+            initData.PositionY = TopLimitPos - (cnt * 1.25f);
+            initData.Name = user_name[cnt];
+            initData.Score = score;
+
+            GameObject obj = Instantiate(RankingObj);
+            obj.GetComponent<RankingObject>().Initialize(initData);
         }
-        return;
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒAƒCƒRƒ“‚ğæ“¾‚·‚é
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¢ã‚¤ã‚³ãƒ³ã‚’å–å¾—ã™ã‚‹
     /// </summary>
-    /// <param name="ranking">‡ˆÊ</param>
-    /// <returns>ƒ‰ƒ“ƒLƒ“ƒOƒAƒCƒRƒ“</returns>
+    /// <param name="ranking">é †ä½</param>
+    /// <returns>ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¢ã‚¤ã‚³ãƒ³</returns>
     private Sprite GetRankIconSprite(int ranking)
     {
         Sprite sprite = null;
 
-        switch ((Rank)ranking) {
+        switch ((Rank)ranking)
+        {
             case Rank.No1:
                 sprite = RankingIcons.No1;
                 break;
@@ -89,13 +93,7 @@ public class RankingObjectManager : MonoBehaviour
                 break;
 
             default:
-                int index = ranking - (int)Rank.Other;
-                int otherLength = RankingIcons.Other.Length;
-
-                // ”z—ñ‚Ì”ÍˆÍŠO‚È‚ç‚±‚±‚Åˆ—I—¹
-                if (otherLength <= index) break;
-
-                sprite = RankingIcons.Other[index];
+                sprite = RankingIcons.Other;
                 break;
         }
 

@@ -47,9 +47,9 @@ public class Client : MonoBehaviour
         }
     }
 
-    public bool SendServer(string order, string message)
+    public bool SendServer(string order, string message, string value, string valueType)
     {
-        RequestServer request = new RequestServer(order, message);
+        SignalDataElem request = new SignalDataElem(order, message, value, valueType);
         return SendServer(request);
     }
 
@@ -58,7 +58,7 @@ public class Client : MonoBehaviour
     /// </summary>
     /// <param name="requestData">送信するメッセージ</param>
     /// <returns>送信に成功したかどうか</returns>
-    public bool SendServer(RequestServer requestData)
+    public bool SendServer(SignalDataElem requestData)
     {
         if (!isConnected)
         {

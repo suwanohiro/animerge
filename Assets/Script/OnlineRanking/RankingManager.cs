@@ -15,17 +15,11 @@ public class RankingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        return;
+        RankingObjectManager objectManager = GetComponent<RankingObjectManager>();
+        objectManager.CreateRankingObject();
 
-        client = _clientElem.GetComponent<Client>();
-        client.ConnectServer();
-
-        client.SendServer(RequestLabel.Request, "Ranking");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        // client = _clientElem.GetComponent<Client>();
+        // client.ConnectServer();
+        // client.SendServer(SignalLabel.Request, "Ranking", "", ValueType.Text);
     }
 }
