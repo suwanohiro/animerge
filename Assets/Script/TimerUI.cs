@@ -14,7 +14,7 @@ public class Sun_Move : MonoBehaviour
 	private float StartTime;
 
 	[SerializeField]
-	public float DurationTime;     //ƒQ[ƒ€ŠJŽn‚©‚çI—¹‚Ü‚Å‚ÉŠ|‚©‚éŽžŠÔ
+	private float DurationTime;     //ƒQ[ƒ€ŠJŽn‚©‚çI—¹‚Ü‚Å‚ÉŠ|‚©‚éŽžŠÔ
 
 	[SerializeField]
 	Image MorningImage;
@@ -58,6 +58,15 @@ public class Sun_Move : MonoBehaviour
 		CursorImage.transform.position = Pos;
 	}
 
+	//ƒQ[ƒ€‚ÌI—¹ŽžŠÔ‚ð‰ß‚¬‚Ä‚¢‚é‚©
+	bool IsEnd()
+	{
+		if(GetTime() > DurationTime)
+			return true;
+
+		return false;
+	}
+
 	//Œo‰ßŽžŠÔŽæ“¾
 	public float GetTime()
 	{
@@ -76,12 +85,8 @@ public class Sun_Move : MonoBehaviour
 		return ratio;
 	}
 
-	//ƒQ[ƒ€‚ÌI—¹ŽžŠÔ‚ð‰ß‚¬‚Ä‚¢‚é‚©
-	bool IsEnd()
+	public float GetDurationTime()
 	{
-		if(GetTime() > DurationTime)
-			return true;
-
-		return false;
+		return DurationTime;
 	}
 }
