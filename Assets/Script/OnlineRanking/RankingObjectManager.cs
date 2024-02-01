@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using RankObjInitData = RankingObject.RankObjInitData;
 
@@ -14,14 +15,18 @@ public class RankingObjectManager : MonoBehaviour
         Other
     }
 
+    enum CreateElemFlgs
+    {
+        Null,
+        Create,
+        Created
+    }
+
     [SerializeField]
     private GameObject RankingObj;
 
     [SerializeField]
     private float TopLimitPos = 2.5f;
-
-    [SerializeField]
-    private int CreateCount = 6;
 
     [Serializable]
     struct RankingIconImages
@@ -39,34 +44,13 @@ public class RankingObjectManager : MonoBehaviour
     [SerializeField]
     private RankingIconImages RankingIcons;
 
+    private CreateElemFlgs createFlag = CreateElemFlgs.Null;
+    private RankingData[] RankingArray;
 
-    private string[] user_name =
-        {
-            "mario",
-            "toad",
-            "bowser",
-            "link",
-            "donkey",
-            "AAAAAAAAAA"
-        };
-
-
-    public void CreateRankingObject()
+    public void CreateRankingObject(RankingData[] rankingArray)
     {
-        for (int cnt = 0; cnt < CreateCount; cnt++)
-        {
-            int score = (int)((CreateCount - cnt) * 123.45f) * 80;
-            RankObjInitData initData;
-
-            initData.Ranking = cnt + 1;
-            initData.SpriteData = GetRankIconSprite(cnt);
-            initData.PositionY = TopLimitPos - (cnt * 1.25f);
-            initData.Name = user_name[cnt];
-            initData.Score = score;
-
-            GameObject obj = Instantiate(RankingObj);
-            obj.GetComponent<RankingObject>().Initialize(initData);
-        }
+        createFlag = CreateElemFlgs.Create;
+        RankingArray = rankingArray;
     }
 
     /// <summary>
@@ -98,5 +82,27 @@ public class RankingObjectManager : MonoBehaviour
         }
 
         return sprite;
+    }
+
+    void Update()
+    {
+        if (createFlag != CreateElemFlgs.Create) return;
+
+        for (int cnt = RankingArray.Length - 1; cnt >= 0; cnt--)
+        {
+            RankingData work = RankingArray[cnt];
+            RankObjInitData initData;
+
+            initData.Ranking = cnt + 1;
+            initData.SpriteData = GetRankIconSprite(cnt);
+            initData.PositionY = TopLimitPos;
+            initData.Name = work.Name;
+            initData.Score = work.Score;
+
+            GameObject obj = Instantiate(RankingObj);
+            obj.GetComponent<RankingObject>().Initialize(initData);
+        }
+
+        createFlag = CreateElemFlgs.Created;
     }
 }

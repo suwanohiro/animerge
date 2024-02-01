@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using System.Net.Sockets;
 using System.Text;
 using System;
-using UnityEditor.PackageManager;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 public class Client : MonoBehaviour
 {
@@ -22,25 +20,33 @@ public class Client : MonoBehaviour
     private ushort ReceiveBuffSize = 1024;
 
     // 接続済みかどうか
-    bool isConnected = false;
+    bool _isConnected = false;
+
+    public bool isConnected
+    {
+        get { return _isConnected; }
+    }
 
     private TcpClient tcpClient;
     private NetworkStream networkStream;
 
-    public bool ConnectServer()
+    public bool ConnectServer(Action<SignalData> receiveFunc)
     {
         try
         {
             tcpClient = new TcpClient(Address, Port);
             networkStream = tcpClient.GetStream();
-            isConnected = true;
+            _isConnected = true;
 
             Debug.Log("接続に成功しました。");
+
+
+            Task.Run(() => { ReceiveStart(receiveFunc); });
             return true;
         }
         catch
         {
-            isConnected = false;
+            _isConnected = false;
 
             Debug.Log("接続に失敗しました。");
             return false;
@@ -60,7 +66,7 @@ public class Client : MonoBehaviour
     /// <returns>送信に成功したかどうか</returns>
     public bool SendServer(SignalDataElem requestData)
     {
-        if (!isConnected)
+        if (!_isConnected)
         {
             Debug.LogError("サーバーへ接続されていません。");
             return false;
@@ -82,13 +88,35 @@ public class Client : MonoBehaviour
         }
     }
 
+    private void ReceiveStart(Action<SignalData> receiveFunc)
+    {
+        Debug.Log("サーバーからのデータ受信待機を開始します。");
+        while (_isConnected)
+        {
+            string receiveData = Receive();
+            SignalData? data = null;
+
+            try
+            {
+                data = JsonUtility.FromJson<SignalData>(receiveData);
+            }
+            catch
+            {
+                Debug.LogError($"不正な形式のデータを受信しました。\nData: {receiveData}");
+            }
+
+            if (data != null) receiveFunc((SignalData)data);
+        }
+        Debug.Log("サーバーからのデータ受信待機を終了しました。");
+    }
+
     /// <summary>
     /// サーバーからデータを受信する処理
     /// </summary>
     /// <returns>受信した文字列データ</returns>
-    public string Receive()
+    private string Receive()
     {
-        if (!isConnected)
+        if (!_isConnected)
         {
             Debug.LogError("サーバーへ接続されていません。");
             return "";
@@ -127,19 +155,32 @@ public class Client : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("受信に失敗しました。");
+            if (_isConnected) Debug.LogError("受信に失敗しました。");
         }
 
         return message;
     }
 
-    void OnDestroy()
+    /// <summary>
+    /// 接続を切断する処理
+    /// </summary>
+    public void DisConnectServer()
     {
         if (tcpClient == null) return;
+
+        _isConnected = false;
 
         tcpClient.Dispose();
         networkStream.Dispose();
 
+        tcpClient = null;
+        networkStream = null;
+
         Debug.Log("切断しました。");
+    }
+
+    void OnDestroy()
+    {
+        DisConnectServer();
     }
 }

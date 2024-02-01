@@ -13,10 +13,11 @@ public struct SignalData
     public string valueType;
 }
 
-public struct SignalLabel
+public struct OrderList
 {
     public const string Request = "Request";
     public const string Update = "Update";
+    public const string Response = "Response";
 }
 
 public struct ValueType
