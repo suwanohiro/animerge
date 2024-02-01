@@ -17,7 +17,7 @@ public struct OrderList
 {
     public const string Request = "Request";
     public const string Update = "Update";
-    public const string Receive = "Receive";
+    public const string Response = "Response";
 }
 
 public struct ValueType

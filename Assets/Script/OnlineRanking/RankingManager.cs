@@ -33,7 +33,7 @@ public class RankingManager : MonoBehaviour
     {
         switch (receiveData.order)
         {
-            case OrderList.Receive:
+            case OrderList.Response:
                 OrderReceive(receiveData);
                 break;
 
