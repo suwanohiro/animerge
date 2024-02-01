@@ -14,7 +14,7 @@ public class Sun_Move : MonoBehaviour
 	private float StartTime;
 
 	[SerializeField]
-	private float DurationTime;     //ゲーム開始から終了までに掛かる時間
+	public float DurationTime;     //ゲーム開始から終了までに掛かる時間
 
 	[SerializeField]
 	Image MorningImage;
@@ -59,7 +59,7 @@ public class Sun_Move : MonoBehaviour
 	}
 
 	//経過時間取得
-	float GetTime()
+	public float GetTime()
 	{
 		return Time.time - StartTime;
 	}
