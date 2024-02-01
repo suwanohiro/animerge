@@ -44,7 +44,7 @@ public class RankingManager : MonoBehaviour
             OrderList.Request,
             "Ranking",
             CreateCount.ToString(),
-            ValueType.Text
+            ValueType.Number
         );
 
         Debug.Log("データを送信しました。");
@@ -89,7 +89,7 @@ public class RankingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// OrderがReceiveの時の処理
+    /// OrderがResponseの時の処理
     /// </summary>
     private void OrderResponse(SignalData receiveData)
     {
