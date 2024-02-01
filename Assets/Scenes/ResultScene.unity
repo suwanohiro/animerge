@@ -627,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 3992141158593616342, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2d68a4ea15e86434facb63ec48575a8e, type: 3}
+      objectReference: {fileID: 21300000, guid: 905331c12a591274093895210d6440fb, type: 3}
     - target: {fileID: 4125178641770189097, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
       value: 1
@@ -706,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779676667361680067, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 170
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5779676667361680067, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_SizeDelta.y
@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8131343371612588537, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_Name
-      value: ButtonExit
+      value: ButtonBack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
