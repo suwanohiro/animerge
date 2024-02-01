@@ -13,7 +13,7 @@ public class Client : MonoBehaviour
 
     // ポート
     [SerializeField]
-    private ushort Port = 3000;
+    private ushort Port = 54321;
 
     // 受信バッファサイズ
     [SerializeField]
