@@ -3049,7 +3049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422891812601314825, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: scene.m_SceneName
-      value: SampleScene
+      value: OnlineRanking
       objectReference: {fileID: 0}
     - target: {fileID: 7239594779558863464, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_AnchoredPosition.x
