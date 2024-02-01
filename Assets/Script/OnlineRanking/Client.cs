@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using System.Net.Sockets;
 using System.Text;
 using System;
-using UnityEditor.PackageManager;
 using System.Threading.Tasks;
-using System.Threading;
+using Cysharp.Threading.Tasks;
 
 public class Client : MonoBehaviour
 {
@@ -43,6 +39,7 @@ public class Client : MonoBehaviour
             _isConnected = true;
 
             Debug.Log("接続に成功しました。");
+
 
             Task.Run(() => { ReceiveStart(receiveFunc); });
             return true;
@@ -97,15 +94,18 @@ public class Client : MonoBehaviour
         while (_isConnected)
         {
             string receiveData = Receive();
+            SignalData? data = null;
 
             try
             {
-                receiveFunc(JsonUtility.FromJson<SignalData>(receiveData));
+                data = JsonUtility.FromJson<SignalData>(receiveData);
             }
             catch
             {
-                Debug.LogError("不正な形式のデータを受信しました。");
+                Debug.LogError($"不正な形式のデータを受信しました。\nData: {receiveData}");
             }
+
+            if (data != null) receiveFunc((SignalData)data);
         }
         Debug.Log("サーバーからのデータ受信待機を終了しました。");
     }
