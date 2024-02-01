@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScene.unity
     guid: d81421b893f90244ea1f3c583741ede2
+  - enabled: 1
+    path: Assets/Scenes/OnlineRanking.unity
+    guid: d6e75e7a0bc0b1448a957b1e3f18e956
   m_configObjects: {}

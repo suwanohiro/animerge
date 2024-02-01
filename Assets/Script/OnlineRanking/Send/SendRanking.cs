@@ -9,27 +9,29 @@ public class SendRanking : MonoBehaviour
 
     private Client client;
 
+    private bool isConnect = false;
+
+    private RankingData SendData;
+
     // Start is called before the first frame update
     void Start()
     {
         client = ClientElem.GetComponent<Client>();
-        bool isConnect = client.ConnectServer((SignalData receiveData) => { ReceiveFunc(receiveData); });
+        isConnect = client.ConnectServer((SignalData receiveData) => { ReceiveFunc(receiveData); });
 
-        if (!isConnect) return;
-
-        RankingData data;
-        data.Name = "test player";
-        data.Score = 100000;
-
-        SendRankingData(data);
+        SendData.Name = Name.Username;
     }
 
-    public void SendRankingData(RankingData data)
+    public void SendRankingData(int Score)
     {
+        if (!isConnect) return;
+
+        SendData.Score = Score;
+
         client.SendServer(
             OrderList.Update,
             "Ranking",
-            JsonUtility.ToJson(data),
+            JsonUtility.ToJson(SendData),
             ValueType.JSON
         );
     }

@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Name : MonoBehaviour
 {
-    static new string name="";
+    public static string Username = "‚µ‚¢‚­‚¢‚ñ";
 
     [SerializeField] TMP_InputField inputfield;
 
-    private string text="";
+    private string text = "";
 
     // Start is called before the first frame update
     void Start()
