@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Enviroment : MonoBehaviour
 {
@@ -23,19 +19,19 @@ public class Enviroment : MonoBehaviour
             Debug.Log(childObject[i]);
             Debug.Log(childSprite[i]);
         }
-        childObject[0].SetActive(true);
+        
     }
     void Update()
     {
-        if (timer.GetTime() >= timer.DurationTime)
+        if (timer.GetTime() >= timer.GetDurationTime())
         {
             Fade(2);
         }
-        else if (timer.GetTime()>timer.DurationTime * 2/ 3)
+        else if (timer.GetTime() > timer.GetDurationTime() * 2 / 3)
         {
             Fade(1);
         }
-        else if(timer.GetTime()>timer.DurationTime /3)
+        else if (timer.GetTime() > timer.GetDurationTime() * 1 / 3)
         {
             Fade(0);
         }
@@ -48,7 +44,6 @@ public class Enviroment : MonoBehaviour
         {
             alpha = 0;
             childObject[n].SetActive(false);
-            childObject[n+1].SetActive(true);
             alpha = 255;
         }
         else
