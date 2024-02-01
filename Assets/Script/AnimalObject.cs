@@ -64,14 +64,14 @@ public class AnimalObject : MonoBehaviour
 		//GameManagerというオブジェクトを探し、取得する
 		GameObject obj = GameObject.Find("GameManager");
 
-		GameManager gameManager = obj.GetComponent<GameManager>();
+		AnimalMerger gameManager = obj.GetComponent<AnimalMerger>();
 
 		Vector2 pos = new Vector2(0, 0);
 		pos.x = (gameObject.transform.position.x + hit.gameObject.transform.position.x) / 2.0f;
 		pos.y = (gameObject.transform.position.y + hit.gameObject.transform.position.y) / 2.0f;
 
 		Debug.Log($"渡す {gameObject.transform.position.x} {gameObject.transform.position.y} {hit.gameObject.transform.position.x} {hit.gameObject.transform.position.y}");
-		gameManager.SetGenerateBooking(new GameManager.GenerateBooking(pos, (animaliagrade + 1)));
+		gameManager.SetGenerateBooking(new AnimalMerger.GenerateBooking(pos, (animaliagrade + 1)));
 
 		DestroyFlg = true;
 	}

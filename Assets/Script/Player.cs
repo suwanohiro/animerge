@@ -70,37 +70,44 @@ public class Player : MonoBehaviour
 							 (int)AnimalObject.AnimaliaGrade.Tiger);
 	}
 
+	[SerializeField]
+	float Speed;
 	void PlayerMove()
 	{
-		float x = Input.GetAxisRaw("Horizontal");
+		float x = 0;
 
-		//同一のGameObjectが持つRigidbodyコンポーネントを取得
-		Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-
-		rigidbody.AddForce(new Vector2(x * 3, 0));
-
-		Vector2 Pos = transform.position;
-		if (Pos.x > BacePos + MoveRange)
+		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			Pos.x = BacePos + MoveRange;
-			rigidbody.velocity = Vector2.zero;
+			x -= Speed;
 		}
-		else if (Pos.x < BacePos - MoveRange)
+		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			Pos.x = BacePos - MoveRange;
-			rigidbody.velocity = Vector2.zero;
+			x += Speed;
 		}
 
-		transform.position = Pos;
+		transform.Translate(x, 0, 0);
 
-		if(NowAnimal != null)
-			NowAnimal.transform.position = Pos;
+		x = 0.0f;
+
+		if (transform.position.x > BacePos + MoveRange)
+		{
+			x = transform.position.x - (BacePos + MoveRange);
+		}
+		else if (transform.position.x < BacePos - MoveRange)
+		{
+			x = transform.position.x - (BacePos - MoveRange);
+		}
+
+		transform.Translate(-x, 0, 0);
+
+		if (NowAnimal != null)
+			NowAnimal.transform.position = transform.position;
 	}
 
 	void GenerateAnimal_Now()
 	{
 		//プレイヤーが保持する動物を生成
-		NowAnimal = GameManager.GenerateAnimal(new GameManager.GenerateBooking(
+		NowAnimal = AnimalMerger.GenerateAnimal(new AnimalMerger.GenerateBooking(
 							new Vector2(transform.position.x,
 										transform.position.y),
 							RandomAnimaliaGrade()));
@@ -114,13 +121,26 @@ public class Player : MonoBehaviour
 	void GenerateAnimal_Next()
 	{
 		//次に落とす動物を生成
-		NextAnimal = GameManager.GenerateAnimal(new GameManager.GenerateBooking(
+		NextAnimal = AnimalMerger.GenerateAnimal(new AnimalMerger.GenerateBooking(
 							new Vector2(NextAnimalLocation.transform.position.x,
 										NextAnimalLocation.transform.position.y),
 							RandomAnimaliaGrade()));
 		Rigidbody2D nextRigid = NextAnimal.GetComponent<Rigidbody2D>();
 		nextRigid.simulated = false;
-		AnimalObject nextAnimal = NowAnimal.GetComponent<AnimalObject>();
+		AnimalObject nextAnimal = NextAnimal.GetComponent<AnimalObject>();
 		nextAnimal.enabled = false;
+	}
+
+	public int GetHoldScore()
+	{
+		int now = (NowAnimal == null) ? 0:
+				ScoreCount.ScoreCalculation
+					(NowAnimal.GetComponent<AnimalObject>().GetAnimaliaGrade());
+
+		int next = (NextAnimal == null) ? 0 :
+				ScoreCount.ScoreCalculation
+					(NextAnimal.GetComponent<AnimalObject>().GetAnimaliaGrade());
+
+		return now + next;
 	}
 }
