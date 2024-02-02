@@ -13,10 +13,10 @@ public class Overflow : MonoBehaviour
 		//相手が、動物オブジェクトで無いなら、処理しない
 		if (!collision.gameObject.CompareTag("Animal")) { return; }
 
-		Debug.Log($"{!collision.gameObject.GetComponent<AnimalObject>().Enable_Collision_Flg()}");
+		Debug.Log($"{!collision.GetComponent<AnimalObject>().Enable_Collision_Flg()}");
 
 		//溢れ無効時間中なら、帰る
-		if (!collision.gameObject.GetComponent<AnimalObject>().Enable_Collision_Flg())
+		if (!collision.GetComponent<AnimalObject>().Enable_Collision_Flg())
 		{ return; }
 
 		Debug.Log("溢れ検出　Finishを実行");

@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
 			NowAnimal != null &&
 			DropTime + DropWaitTime <= Time.time)
 		{
+			Debug.Log("DP");
 			DropAnimal();
 		}
 		else if(NowAnimal == null && DropTime + SetWaitTime <= Time.time)
@@ -103,8 +104,6 @@ public class Player : MonoBehaviour
 		nowRigid.simulated = true;
 		AnimalObject nowAnimal = NowAnimal.GetComponent<AnimalObject>();
 		nowAnimal.enabled = true;
-
-		nowAnimal.SetDropTime();
 		
 		NowAnimal = null;
 

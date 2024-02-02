@@ -696,7 +696,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.3773585, g: 0.23292924, b: 0.04805981, a: 0.68235296}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -880,7 +880,7 @@ Transform:
   m_GameObject: {fileID: 1118023647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 3, z: 0}
+  m_LocalPosition: {x: -0.275, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b90e1f6edf21a4fabfff1862bc3619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveRange: 3.5
+  MoveRange: 3
   NextAnimalLocation: {fileID: 1691626019}
   DropWaitTime: 0.5
   SetWaitTime: 1
@@ -1125,8 +1125,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 775.52, y: -183}
-  m_SizeDelta: {x: 368.954, y: 530.3265}
+  m_AnchoredPosition: {x: 764.5646, y: -193.5132}
+  m_SizeDelta: {x: 337.9991, y: 692.9783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406398646
 MonoBehaviour:
@@ -1467,7 +1467,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588968664}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1841,7 +1841,7 @@ Transform:
   m_GameObject: {fileID: 1736628053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.65, z: 0}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
   m_LocalScale: {x: 60, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1854,7 +1854,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736628053}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1934,7 +1934,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.28235295}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2107,7 +2107,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.3773585, g: 0.23292924, b: 0.04805981, a: 0.68235296}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2440,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5742462385073948038, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e68e9c7371704064fae760d29ff78f7f, type: 3}
     - target: {fileID: 6020407138700936076, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: m_Name
       value: TimerUI
@@ -2454,7 +2458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6873467418274873976, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: DurationTime
-      value: 10
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6873467418274873976, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: TwilightImage
@@ -2483,7 +2487,7 @@ PrefabInstance:
     - target: {fileID: 7850873602512312404, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e68e9c7371704064fae760d29ff78f7f, type: 3}
+      objectReference: {fileID: 21300000, guid: bc1653f4e94080a43a9ac1b3c9af4318, type: 3}
     - target: {fileID: 7898479825204217906, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: m_Sprite
       value: 
