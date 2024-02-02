@@ -2520,7 +2520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6873467418274873976, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: DurationTime
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6873467418274873976, guid: 5783b20b4a5d1af45bd16c10bdc4170f, type: 3}
       propertyPath: TwilightImage

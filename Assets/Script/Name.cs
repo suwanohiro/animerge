@@ -26,13 +26,13 @@ public class Name : MonoBehaviour
         {
             text.Trim();
             inputfield.text = Regex.Replace(text, @"[^‚ -‚ñƒJ-ƒ–A-z‚`-‚š0-9‚O-‚X]", "");
-            Debug.Log("name " + name);
+            Debug.Log("name " + Username);
 
             Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
             byte[] bytes = sjisEnc.GetBytes(text);
             if (bytes.Length <= 10)
             {
-                name = text;
+                Username = text;
             }
             else
             {
@@ -41,8 +41,8 @@ public class Name : MonoBehaviour
                 {
                     num[i] = bytes[i];
                 }
-                name = sjisEnc.GetString(num);
-                inputfield.text = name;
+                Username = sjisEnc.GetString(num);
+                inputfield.text = Username;
                 Debug.Log("byte " + bytes);
             }
         }
