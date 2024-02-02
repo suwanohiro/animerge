@@ -46,14 +46,7 @@ public class Player : MonoBehaviour
 			NowAnimal != null &&
 			DropTime + DropWaitTime <= Time.time)
 		{
-			Rigidbody2D nowRigid = NowAnimal.GetComponent<Rigidbody2D>();
-			nowRigid.simulated = true;
-			AnimalObject nowAnimal = NowAnimal.GetComponent<AnimalObject>();
-			nowAnimal.enabled = true;
-
-			NowAnimal = null;
-
-			DropTime = Time.time;
+			DropAnimal();
 		}
 		else if(NowAnimal == null && DropTime + SetWaitTime <= Time.time)
 		{
@@ -102,6 +95,20 @@ public class Player : MonoBehaviour
 
 		if (NowAnimal != null)
 			NowAnimal.transform.position = transform.position;
+	}
+
+	void DropAnimal()
+	{
+		Rigidbody2D nowRigid = NowAnimal.GetComponent<Rigidbody2D>();
+		nowRigid.simulated = true;
+		AnimalObject nowAnimal = NowAnimal.GetComponent<AnimalObject>();
+		nowAnimal.enabled = true;
+
+		nowAnimal.SetDropTime();
+		
+		NowAnimal = null;
+
+		DropTime = Time.time;
 	}
 
 	void GenerateAnimal_Now()

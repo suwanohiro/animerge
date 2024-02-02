@@ -5,21 +5,19 @@ using TMPro;
 
 public class GameMnager : MonoBehaviour
 {
-    [SerializeField]
-    TextMeshProUGUI scoreText;
+	[SerializeField]
+	UnityEngine.UI.Text scoreText;
 
 	// Start is called before the first frame update
 	void Start()
-    {
-        
-    }
+	{
+		
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        int score = ScoreCount.GetScore();
-
-		scoreText.text = score.ToString("N0");
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		int score = ScoreCount.GetScore();
+		scoreText.text = score.ToString();
+	}
 }
