@@ -67,8 +67,8 @@ public class FinishGame : MonoBehaviour
     {
         if (!FinishSE.isPlaying)
         {
-            //SceneManager.LoadScene("ResultScene");
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("ResultScene");
+            //SceneManager.LoadScene("SampleScene");
         }
     }
 }

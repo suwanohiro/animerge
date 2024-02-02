@@ -13,15 +13,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Text.SetText($"Score:345");
-        
-        //Text.SetText($"Score:{GameManager.Score.ToString()}");
-        //Text.text += GameManager.Score.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Text.SetText("Score:345");
+        //Text.SetText($"Score:{ScoreCount.GetScore()}");
     }
 }
