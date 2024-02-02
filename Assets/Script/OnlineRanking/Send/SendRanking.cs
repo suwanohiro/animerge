@@ -24,7 +24,11 @@ public class SendRanking : MonoBehaviour
 
     public void SendRankingData(int Score)
     {
-        if (!isConnect) return;
+        if (!isConnect)
+        {
+            Debug.LogError("接続されていません。");
+            return;
+        }
 
         SendData.Score = Score;
 
