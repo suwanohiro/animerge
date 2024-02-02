@@ -73,7 +73,7 @@ public class Sun_Move : MonoBehaviour
 
 		if(IsEnd())
 		{
-			GameManager_Obj.GetComponent<FinishGame>().Finish(); 
+			GameManager_Obj.GetComponent<FinishGame>().Finish();
 		}
 	}
 
