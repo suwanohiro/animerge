@@ -25,16 +25,17 @@ public class AnimalObject : MonoBehaviour
 
 	private bool DestroyFlg = false;
 
-	//private bool Drop_Flg = false;
-	
 	private float Not_Overflow_Time;
 	private float Drop_Time;
-
+	
 	// Start is called before the first frame update
 	void Start()
 	{
-		Not_Overflow_Time = 30.0f;
+		Debug.Log("Start");
 		
+		Not_Overflow_Time = 1.5f;
+		SetDropTime();
+
 		if(animaliagrade > AnimaliaGrade.Hamster)
 		{
 			Debug.Log("animaliagradeが、最大値を越えています。");
@@ -91,14 +92,11 @@ public class AnimalObject : MonoBehaviour
 	public void SetDropTime()
 	{
 		Debug.Log("SetDropTime");
-		//Drop_Flg = true;
 		Drop_Time = Time.time + Not_Overflow_Time;
 	}
 
 	public bool Enable_Collision_Flg()
 	{
-		//Debug.Log($"お呼ばれ　{Drop_Flg}");
-		//if (!Drop_Flg) { return false; }
 		Debug.Log($"{Drop_Time} {Time.time}");
 		return Drop_Time <= Time.time;
 	}
