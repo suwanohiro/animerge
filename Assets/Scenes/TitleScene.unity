@@ -2019,7 +2019,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1330177281}
-  - component: {fileID: 1330177282}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -2049,18 +2048,6 @@ Transform:
   - {fileID: 184876538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1330177282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330177280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bea811a18490e44c8efbc399b77c59a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1333109953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5885942040574311744, guid: e695c68a153e7c24abd8b1d499ade05f, type: 3}
@@ -2749,7 +2736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422891812601314825, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: scene.m_SceneName
-      value: GameScene
+      value: ResultScene
       objectReference: {fileID: 0}
     - target: {fileID: 8131343371612588537, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_Name
@@ -3062,7 +3049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422891812601314825, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: scene.m_SceneName
-      value: ResultScene
+      value: OnlineRanking
       objectReference: {fileID: 0}
     - target: {fileID: 7239594779558863464, guid: fef159792c2282c44a5f07c3d5883d14, type: 3}
       propertyPath: m_AnchoredPosition.x
