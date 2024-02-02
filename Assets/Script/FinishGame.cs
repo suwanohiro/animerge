@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishGame : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class FinishGame : MonoBehaviour
 
     private bool ChangeScaleFlg;
 
-    private bool End;               //I—¹”»’è
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +34,6 @@ public class FinishGame : MonoBehaviour
         time = 0;
         ChangeScale = 0;
         ChangeScaleFlg = false;
-
-        End = false;
     }
 
     // Update is called once per frame
@@ -55,17 +52,24 @@ public class FinishGame : MonoBehaviour
         else if (ChangeScale > MaxScale)
         {
             Object.transform.localScale = new Vector3(MaxScale, MaxScale, MaxScale);
-            End = true;
+            ChangeScene();
         }
     }
     public void Finish()
     {
         ChangeScaleFlg = true;
-        FinishSE.Play();
+        if (!FinishSE.isPlaying)
+        {
+            FinishSE.Play();
+        }
     }
-    public bool IsEnd()
+    void ChangeScene()
     {
-        return End;
+        if (!FinishSE.isPlaying)
+        {
+            //SceneManager.LoadScene("ResultScene");
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }
 

@@ -20,6 +20,6 @@ public class GameMnager : MonoBehaviour
 
         int score = ScoreCount.GetScore();
 
-		scoreText.text = score.ToString("N0");
+		//scoreText.text = score.ToString("N0");
     }
 }
