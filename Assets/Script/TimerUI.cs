@@ -69,8 +69,17 @@ public class Sun_Move : MonoBehaviour
 		CursorImage.transform.position = Pos;
 	}
 
+	//ゲームの終了時間を過ぎているか
+	bool IsEnd()
+	{
+		if(GetTime() > DurationTime)
+			return true;
+
+		return false;
+	}
+
 	//経過時間取得
-	float GetTime()
+	public float GetTime()
 	{
 		return Time.time - StartTime;
 	}
@@ -87,12 +96,8 @@ public class Sun_Move : MonoBehaviour
 		return ratio;
 	}
 
-	//ゲームの終了時間を過ぎているか
-	bool IsEnd()
+	public float GetDurationTime()
 	{
-		if(GetTime() > DurationTime)
-			return true;
-
-		return false;
+		return DurationTime;
 	}
 }
