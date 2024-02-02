@@ -16,8 +16,8 @@ public class Enviroment : MonoBehaviour
             Transform childTransform = transform.GetChild(i);
             childObject[i] = childTransform.gameObject;
             childSprite[i]=childTransform.GetComponent<SpriteRenderer>();
-            Debug.Log(childObject[i]);
-            Debug.Log(childSprite[i]);
+            //Debug.Log(childObject[i]);
+            //Debug.Log(childSprite[i]);
         }
         
     }

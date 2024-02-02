@@ -12,7 +12,7 @@ public class AnimalMerger : MonoBehaviour
 
 		public GenerateBooking(Vector2 pos, AnimalObject.AnimaliaGrade animaliaGrade)
 		{
-			Debug.Log($"コンストラクタ {pos.x} {pos.y}");
+			//Debug.Log($"コンストラクタ {pos.x} {pos.y}");
 			Pos = pos;
 			AnimaliaGrade = animaliaGrade;
 		}

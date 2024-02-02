@@ -34,6 +34,9 @@ public class Sun_Move : MonoBehaviour
 	[SerializeField]
 	private float DurationTime;     //ゲーム開始から終了までに掛かる時間
 
+	[SerializeField]
+	GameObject GameManager_Obj;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -67,6 +70,11 @@ public class Sun_Move : MonoBehaviour
 		Pos.y += CursorVerticalSpace;
 
 		CursorImage.transform.position = Pos;
+
+		if(IsEnd())
+		{
+			GameManager_Obj.GetComponent<FinishGame>().Finish(); 
+		}
 	}
 
 	//ゲームの終了時間を過ぎているか

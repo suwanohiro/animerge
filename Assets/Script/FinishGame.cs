@@ -44,7 +44,6 @@ public class FinishGame : MonoBehaviour
     {
         if (!ChangeScaleFlg)
         {
-            Finish();
             return;
         }
         time += Time.deltaTime;
